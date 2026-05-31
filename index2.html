@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Friend ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    overflow: hidden;
+}
+
+.container {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+
+h1 {
+    color: #ff4d6d;
+}
+
+button {
+    padding: 12px 20px;
+    margin: 8px;
+    border: none;
+    border-radius: 10px;
+    background: #ff4d6d;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+.hidden {
+    display: none;
+}
+
+.gif {
+    width: 250px;
+    border-radius: 15px;
+    margin-top: 15px;
+}
+
+.heart {
+    position: absolute;
+    color: red;
+    font-size: 20px;
+    animation: float 4s linear infinite;
+}
+
+@keyframes float {
+    from {
+        transform: translateY(100vh);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-100px);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div id="page1">
+        <h1>Can I ask you something? 😊</h1>
+        <button onclick="nextPage(2)">Yes</button>
+    </div>
+
+    <div id="page2" class="hidden">
+        <h1>Do you know how much you mean to me? 🌸</h1>
+        <button onclick="nextPage(3)">A little</button>
+        <button onclick="nextPage(3)">A lot</button>
+        <button onclick="nextPage(3)">No idea</button>
+    </div>
+
+    <div id="page3" class="hidden">
+        <h1>Wrong answer 😝</h1>
+        <p>Try again?</p>
+        <button onclick="nextPage(4)">Continue ❤️</button>
+    </div>
+
+    <div id="page4" class="hidden">
+        <h1>You mean more than you think 💖</h1>
+        <p>
+            Thank you for being my friend.<br>
+            You make my days brighter, my smiles bigger,
+            and my life a little happier. 🌷✨
+        </p>
+
+        <img class="gif"
+        src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif"
+        alt="Cute GIF">
+
+        <br><br>
+
+        <button onclick="hug()">Send me a hug 🤗</button>
+
+        <p id="hugMessage"></p>
+    </div>
+
+</div>
+
+<script>
+function nextPage(page) {
+    document.querySelectorAll(".container > div")
+    .forEach(div => div.classList.add("hidden"));
+
+    document.getElementById("page" + page)
+    .classList.remove("hidden");
+}
+
+function hug() {
+    document.getElementById("hugMessage").innerHTML =
+        "Virtual hug sent! ❤️🤗";
+
+    for(let i=0;i<20;i++){
+        let heart = document.createElement("div");
+        heart.innerHTML = "❤️";
+        heart.className = "heart";
+        heart.style.left = Math.random()*100 + "vw";
+        heart.style.fontSize = (20 + Math.random()*20) + "px";
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 4000);
+    }
+}
+</script>
+
+</body>
+</html>
